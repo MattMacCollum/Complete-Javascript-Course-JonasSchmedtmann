@@ -15,6 +15,14 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 
+let switchPlayer = function(){
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0El.classList.toggle('player--active');
+    player1El.classList.toggle('player--active');
+}
+
 
 //Initial conditions
 score0El.textContent = 0;
@@ -48,15 +56,23 @@ btnRoll.addEventListener('click', function(){
   }else{
     //Case if dice is a 1: Switch the active player
 
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    currentScore = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    player0El.classList.toggle('player--active');
-    player1El.classList.toggle('player--active');
+    switchPlayer();
 
 
   }
 
+})
 
+btnHold.addEventListener('click', function(){
+
+  //Add the current score to the active players score
+
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+  switchPlayer();
+
+  //Check to see if the score is >=100
+  //if yes : finish game
+  //if no : switch player
 
 })
