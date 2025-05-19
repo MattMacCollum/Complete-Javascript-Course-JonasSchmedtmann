@@ -19,7 +19,10 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
+
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 
 btnRoll.addEventListener('click', function(){
   //Generate random dice roll
@@ -35,9 +38,15 @@ btnRoll.addEventListener('click', function(){
   if(dice !== 1){
     //Case if dice isnt 1: Add to current score
     currentScore += dice;
+
+    document.getElementById(`current--${activePlayer}`).textContent = currentScore;
+
+
     current0El.textContent = currentScore;
 
   }else{
+    //Case if dice is a 1: Switch the active player
+    activePlayer = activePlayer === 0 ? 1 : 0;
 
   }
 
