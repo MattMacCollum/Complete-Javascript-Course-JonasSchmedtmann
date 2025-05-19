@@ -3,8 +3,8 @@
 // Getting the elements of the scores
 const score0El = document.querySelector('#score--0');
 const score1El = document.querySelector('#score--1');
-const curren0El = document.getElementById('current--0');
-const curren1El = document.getElementById('current--1');
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
 
 
 const diceEl = document.querySelector('.dice');
@@ -26,7 +26,8 @@ let activePlayer = 0;
 
 btnRoll.addEventListener('click', function(){
   //Generate random dice roll
-  const dice = Math.trunc(Math.random() * 6)
+  const dice = Math.trunc(Math.random() * 6) + 1;
+  console.log.apply(dice);
 
   //Display the corresponding dice face
   diceEl.classList.remove('hidden');
@@ -42,10 +43,11 @@ btnRoll.addEventListener('click', function(){
     document.getElementById(`current--${activePlayer}`).textContent = currentScore;
 
 
-    current0El.textContent = currentScore;
-
   }else{
     //Case if dice is a 1: Switch the active player
+
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
     activePlayer = activePlayer === 0 ? 1 : 0;
 
   }
